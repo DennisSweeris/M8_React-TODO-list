@@ -17,7 +17,7 @@ const CartItem = ({ item }) => {
     <>
       <li className="cart-item" key={item.id} value={item} amount={item.amount}>
         <span>{item}</span>
-        <span>{`Hoeveelheid: ${item.amount}`}</span>
+        <span>{` Aantal: ${item.amount}`}</span>
       </li>
     </>
   );

@@ -6,10 +6,10 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shoppingItems: [
-        { type: "Itemlist", id: 1, title: "Appels" },
-        { type: "Itemlist", id: 2, title: "Pak melk" },
-        { type: "Itemlist", id: 3, title: "Chocolade" },
+      groceryItems: [
+        { type: "groceryList", id: 1, title: "Appels" },
+        { type: "groceryList", id: 2, title: "Pak melk" },
+        { type: "groceryList", id: 3, title: "Chocolade" },
       ],
       shoppingCartItems: [
         { type: "Shoppinglist", id: 1, title: "Bananen", amount: 5 },
@@ -19,6 +19,15 @@ class Container extends Component {
   }
 
   render() {
+    const addGrocery = grocery => {
+      const item = {
+        type: "groceryList",
+        id: this.state.groceryItems.length + 1,
+        title: grocery,
+      };
+      this.setState({ groceryItems: this.state.groceryItems.concat(item) });
+    };
+
     const addNewShoppingListItem = itemTitle => {
       const newShoppingItem = {
         type: "Shoppinglist",
@@ -62,23 +71,14 @@ class Container extends Component {
       this.setState({ shoppingCartItems: [] });
     };
 
-    const addNewItem = grocery => {
-      const item = {
-        type: "Itemlist",
-        id: this.state.shoppingItems.length + 1,
-        title: grocery,
-      };
-      this.setState({ shoppingItems: this.state.shoppingItems.concat(item) });
-    };
-
     return (
       <div className="container">
         <div className="groceries-list groceries">
           <h1>Groceries</h1>
           <GroceryList
             handleClickItem={handleClickItem}
-            addNewItem={addNewItem}
-            items={this.state.shoppingItems}
+            addGrocery={addGrocery}
+            items={this.state.groceryItems}
           />
         </div>
         <div className="groceries-list shopping-cart">

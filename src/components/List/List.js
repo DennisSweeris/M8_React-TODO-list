@@ -6,7 +6,7 @@ const List = ({ items, handleClickItem }) => {
     <>
       <ul>
         {items.map(item => {
-          if (item.type === "Itemlist")
+          if (item.type === "groceryList")
             return (
               <ListItem
                 key={item.id}
