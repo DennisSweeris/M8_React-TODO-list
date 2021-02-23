@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import GroceryList from "./containers/GroceryList";
 import ShoppingCart from "./containers/ShoppingCart";
 
-class Container extends Component {
+export default class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       groceryItems: [
-        { type: "groceryList", id: 1, title: "Appels" },
-        { type: "groceryList", id: 2, title: "Pak melk" },
-        { type: "groceryList", id: 3, title: "Chocolade" },
+        { type: "Grocerylist", id: 1, title: "Appels" },
+        { type: "Grocerylist", id: 2, title: "Pak melk" },
+        { type: "Grocerylist", id: 3, title: "Chocolade" },
       ],
       shoppingCartItems: [
         { type: "Shoppinglist", id: 1, title: "Bananen", amount: 5 },
@@ -21,7 +21,7 @@ class Container extends Component {
   render() {
     const addGrocery = grocery => {
       const item = {
-        type: "groceryList",
+        type: "Grocerylist",
         id: this.state.groceryItems.length + 1,
         title: grocery,
       };
@@ -36,12 +36,17 @@ class Container extends Component {
         amount: 1,
       };
 
-      this.setState(prevState => {
-        const newList = prevState.shoppingCartItems.concat(newShoppingItem);
-        return {
-          shoppingCartItems: newList,
-        };
+      this.setState({
+        shoppingCartItems: this.state.shoppingCartItems.concat(newShoppingItem),
       });
+    };
+
+    // Delete Item
+    const deleteItem = id => {
+      const newItems = this.state.shoppingCartItems.filter(
+        item => item.id !== id
+      );
+      this.setState({ shoppingCartItems: newItems });
     };
 
     const addAmountToItem = itemTitle => {
@@ -86,11 +91,10 @@ class Container extends Component {
           <ShoppingCart
             handleClickEmptyCart={handleClickEmptyCart}
             items={this.state.shoppingCartItems}
+            onDelete={deleteItem}
           />
         </div>
       </div>
     );
   }
 }
-
-export default Container;

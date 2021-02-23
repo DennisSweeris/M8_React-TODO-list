@@ -1,15 +1,16 @@
-import React from "react";
 import List from "../components/List/List";
 
-const ShoppingCart = ({ items, handleClickEmptyCart }) => {
+export default function ShoppingCart({
+  items,
+  handleClickEmptyCart,
+  onDelete,
+}) {
   return (
     <>
       <button className="button-cart" onClick={handleClickEmptyCart}>
         Leeg Winkelwagen
       </button>
-      <List items={items} />
+      <List items={items} onDelete={onDelete} />
     </>
   );
-};
-
-export default ShoppingCart;
+}

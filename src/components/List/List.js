@@ -1,33 +1,16 @@
-import React from "react";
 import { ListItem, CartItem } from "./ListItem";
 
-const List = ({ items, handleClickItem }) => {
+export default function List({ items, handleClickItem, onDelete }) {
   return (
-    <>
-      <ul>
-        {items.map(item => {
-          if (item.type === "groceryList")
-            return (
-              <ListItem
-                key={item.id}
-                item={item.title}
-                handleClickItem={handleClickItem}
-                type={item.type}
-              />
-            );
-          else
-            return (
-              <CartItem
-                key={item.id}
-                item={item.title}
-                type={item.type}
-                amount={item.amount}
-              />
-            );
-        })}
-      </ul>
-    </>
+    <ul>
+      {items.map(item => {
+        const { id } = item;
+        if (item.type === "Grocerylist")
+          return (
+            <ListItem key={id} handleClickItem={handleClickItem} item={item} />
+          );
+        else return <CartItem key={id} item={item} onDelete={onDelete} />;
+      })}
+    </ul>
   );
-};
-
-export default List;
+}

@@ -10,12 +10,18 @@ body {
 }
 
 .groceries-header {
-  margin: 1rem;
+  margin: 1em;
   text-align: center;
 }
 
+.groceries-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .groceries-list h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 .container {
@@ -23,32 +29,59 @@ body {
   justify-content: space-around;
 }
 
+.form-input {
+  margin-right: 1em;
+}
+
 .form-input,
 .form_input-submit,
 .button-cart {
-  margin: 0 0.25em 0.5em 0;
-  padding: 0.5rem;
+  margin-bottom: 1em;
+  padding: 0.5em;
   outline: none;
   border: 1px solid #000;
   background-color: #fff;
 }
 
 .form_input-submit,
-.button-cart {
+.button-cart,
+.list-button {
   cursor: pointer;
 }
 
 .list-item,
 .cart-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   list-style-type: none;
+  padding: 1em;
+  border-radius: 0.5em 0 0 0.5em;
+  border-bottom: 1px solid black;
+  align-items: center;
 }
 
 .list-item:nth-child(odd),
 .cart-item:nth-child(odd) {
-  background: green;
+  background: rgb(173, 255, 149);
 }
 
 .list-item:nth-child(even),
 .cart-item:nth-child(even) {
-  background: red;
+  background: rgb(193, 252, 207);
+}
+
+.list-item:nth-child(1),
+.cart-item:nth-child(1) {
+  border-top: 1px solid black;
+}
+
+.cart-amount,
+.list-button {
+  background: white;
+  padding: 0.25em;
+}
+
+.list-button {
+  margin-left: 0.25em;
 }

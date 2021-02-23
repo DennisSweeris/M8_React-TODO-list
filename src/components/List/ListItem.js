@@ -1,25 +1,29 @@
-import React from "react";
-
-const ListItem = ({ item, handleClickItem }) => {
-  return (
-    <li
-      className="list-item"
-      key={item.id}
-      value={item}
-      onClick={handleClickItem}>
-      <span>{item}</span>
-    </li>
-  );
-};
-
-const CartItem = ({ item }) => {
+export const ListItem = ({ item, handleClickItem }) => {
+  const { id, title, type } = item;
   return (
     <>
-      <li className="cart-item" key={item.id} value={item} amount={item.amount}>
-        <span>{item}</span>
-        <span>{` Aantal: ${item.amount}`}</span>
+      <li
+        className="list-item"
+        key={id}
+        value={title}
+        type={type}
+        onClick={handleClickItem}>
+        {title}
       </li>
     </>
   );
 };
-export { ListItem, CartItem };
+
+export const CartItem = ({ item, onDelete }) => {
+  const { title, id, amount } = item;
+  return (
+    <li className="cart-item" key={id}>
+      {title}
+
+      <span className="cart-amount">{amount}</span>
+      <button className="list-button" onClick={() => onDelete(id)}>
+        X
+      </button>
+    </li>
+  );
+};
